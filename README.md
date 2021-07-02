@@ -4,4 +4,4 @@ Proyecto demo para un chat en vivo con SocketIO, pero, con la propuesta de manej
 
 ## Importante
 
-Para que esta demo funcione necesita que corra el docker-compose que está en el proyecto [Main Chat](https://github.com/nestjs/nest)
+Para que esta demo funcione necesita que corra el docker-compose que está en el proyecto [Main Chat](https://github.com/CharlyEstudio/redis-multi-ins-sock-main)
