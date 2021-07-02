@@ -1,0 +1,45 @@
+version: '3'
+services:
+  lb:
+    image: haproxy
+    restart: always
+    ports:
+      - "3030:3030"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+  ws1:
+    image: wsapp
+    restart: always
+    environment:
+      - APPID=1111
+      - PORT=3000
+      - REDIS_HOST=rds
+      - REDIS_PASSWORD=Passw0rd
+    command: node ./dist/main.js
+  ws2:
+    image: wsapp
+    restart: always
+    environment:
+      - APPID=2222
+      - PORT=3000
+      - REDIS_HOST=rds
+      - REDIS_PASSWORD=Passw0rd
+    command: node ./dist/main.js
+  rds:
+    image: redis:6.0.3
+    restart: always
+    command: redis-server --requirepass Passw0rd
+    ports:
+      - "6379:6379"
+  client:
+    image: wasaat
+    entrypoint: /bin/bash
+    stdin_open: true
+    tty: true
+    restart: always
+    # command: service apache2 start
+    command: apachectl -DFOREGROUND
+    environment:
+      - webSocket=http://haproxy:3030/
+    ports:
+      - "80:80"

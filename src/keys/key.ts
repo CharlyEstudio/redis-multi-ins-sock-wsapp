@@ -1,0 +1,7 @@
+export const Key = {
+  APPID: 'APPID',
+  PORT: 'PORT',
+  REDIS_PORT: 'REDIS_PORT',
+  REDIS_HOST: 'REDIS_HOST',
+  REDIS_PASSWORD: 'REDIS_PASSWORD',
+};
